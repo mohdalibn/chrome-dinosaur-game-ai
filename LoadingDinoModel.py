@@ -1,11 +1,11 @@
 import pygame
-import os 
+import os
 import random
 import sys
 import neat
 import math
 import numpy as np
-import pickle # use this module to save the best bird into a file and then you can load in the file and use the neural network associated with it
+import pickle  # use this module to save the best bird into a file and then you can load in the file and use the neural network associated with it
 
 
 pygame.init()
@@ -17,28 +17,36 @@ SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 FONT = pygame.font.Font('freesansbold.ttf', 20)
 
-RUNNING = [pygame.image.load(os.path.join("ChromeDinoGame/Assets/Dino", "DinoRun1.png")),
-pygame.image.load(os.path.join("ChromeDinoGame/Assets/Dino", "DinoRun2.png"))]
+# Sets the name of the window
+pygame.display.set_caption("Chrome Dinosaur Game AI")
 
-JUMPING = pygame.image.load(os.path.join("ChromeDinoGame/Assets/Dino", "DinoJump.png"))
+RUNNING = [pygame.image.load(os.path.join("./Assets/Dino", "DinoRun1.png")),
+           pygame.image.load(os.path.join("./Assets/Dino", "DinoRun2.png"))]
 
-DUCKING = [pygame.image.load(os.path.join("ChromeDinoGame/Assets/Dino", "DinoDuck1.png")),
-           pygame.image.load(os.path.join("ChromeDinoGame/Assets/Dino", "DinoDuck2.png"))]
+JUMPING = pygame.image.load(os.path.join(
+    "./Assets/Dino", "DinoJump.png"))
 
-SMALL_CACTUS = [pygame.image.load(os.path.join("ChromeDinoGame/Assets/Cactus", "SmallCactus1.png")),
-                pygame.image.load(os.path.join("ChromeDinoGame/Assets/Cactus", "SmallCactus2.png")),
-                pygame.image.load(os.path.join("ChromeDinoGame/Assets/Cactus", "SmallCactus3.png"))]
+DUCKING = [pygame.image.load(os.path.join("./Assets/Dino", "DinoDuck1.png")),
+           pygame.image.load(os.path.join("./Assets/Dino", "DinoDuck2.png"))]
 
-LARGE_CACTUS = [pygame.image.load(os.path.join("ChromeDinoGame/Assets/Cactus", "LargeCactus1.png")),
-                pygame.image.load(os.path.join("ChromeDinoGame/Assets/Cactus", "LargeCactus2.png")),
-                pygame.image.load(os.path.join("ChromeDinoGame/Assets/Cactus", "LargeCactus3.png"))]
+SMALL_CACTUS = [pygame.image.load(os.path.join("./Assets/Cactus", "SmallCactus1.png")),
+                pygame.image.load(os.path.join(
+                    "./Assets/Cactus", "SmallCactus2.png")),
+                pygame.image.load(os.path.join("./Assets/Cactus", "SmallCactus3.png"))]
 
-BIRD = [pygame.image.load(os.path.join("ChromeDinoGame/Assets/Bird", "Bird1.png")),
-        pygame.image.load(os.path.join("ChromeDinoGame/Assets/Bird", "Bird2.png"))]
+LARGE_CACTUS = [pygame.image.load(os.path.join("./Assets/Cactus", "LargeCactus1.png")),
+                pygame.image.load(os.path.join(
+                    "./Assets/Cactus", "LargeCactus2.png")),
+                pygame.image.load(os.path.join("./Assets/Cactus", "LargeCactus3.png"))]
 
-CLOUD = pygame.image.load(os.path.join("ChromeDinoGame/Assets/Other", "Cloud.png"))
+BIRD = [pygame.image.load(os.path.join("./Assets/Bird", "Bird1.png")),
+        pygame.image.load(os.path.join("./Assets/Bird", "Bird2.png"))]
 
-BG = pygame.image.load(os.path.join("ChromeDinoGame/Assets/Other", "Track.png"))
+CLOUD = pygame.image.load(os.path.join(
+    "./Assets/Other", "Cloud.png"))
+
+BG = pygame.image.load(os.path.join(
+    "./Assets/Other", "Track.png"))
 
 
 class Dinosaur:
@@ -53,10 +61,11 @@ class Dinosaur:
         self.dino_jump = False
         self.dino_duck = False
         self.jump_vel = self.JUMP_VEL
-        self.rect = pygame.Rect(self.X_POS, self.Y_POS, img.get_width(), img.get_height())
+        self.rect = pygame.Rect(self.X_POS, self.Y_POS,
+                                img.get_width(), img.get_height())
         self.step_index = 0
-        self.color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-
+        self.color = (random.randint(0, 255), random.randint(
+            0, 255), random.randint(0, 255))
 
         # self.duck_img = DUCKING
         # self.run_img = RUNNING
@@ -118,12 +127,14 @@ class Dinosaur:
     def draw(self, SCREEN):
         SCREEN.blit(self.image, (self.rect.x, self.rect.y))
         # draws the hitbox around the dinosaurs
-        pygame.draw.rect(SCREEN, self.color, (self.rect.x, self.rect.y, self.rect.width, self.rect.height), 2)
+        pygame.draw.rect(SCREEN, self.color, (self.rect.x,
+                         self.rect.y, self.rect.width, self.rect.height), 2)
 
         # loops over the obstacles list and draws a line of sight from the dinosaur
         # 54 and 12 are offsets that puts the line at the center of the dinosaur's eye
         for obstacle in obstacles:
-            pygame.draw.line(SCREEN, self.color, (self.rect.x + 54, self.rect.y + 12), obstacle.rect.center, 2)
+            pygame.draw.line(SCREEN, self.color, (self.rect.x +
+                             54, self.rect.y + 12), obstacle.rect.center, 2)
 
 
 class Cloud:
@@ -159,17 +170,20 @@ class Obstacle:
     def draw(self, SCREEN):
         SCREEN.blit(self.image[self.type], self.rect)
 
+
 class SmallCactus(Obstacle):
     def __init__(self, image, number_of_cacti):
         #self.number_of_cacti = random.randint(0, 2)
         super().__init__(image, number_of_cacti)
         self.rect.y = 325
 
+
 class LargeCactus(Obstacle):
     def __init__(self, image, number_of_cacti):
         #self.number_of_cacti = random.randint(0, 2)
         super().__init__(image, number_of_cacti)
         self.rect.y = 300
+
 
 class Bird(Obstacle):
     def __init__(self, image):
@@ -185,8 +199,7 @@ class Bird(Obstacle):
         self.index += 1
 
 
-
-def remove(index): # removes the dinosaurs that run into an obstacle
+def remove(index):  # removes the dinosaurs that run into an obstacle
     dinosaurs.pop(index)
     ge.pop(index)
     nets.pop(index)
@@ -195,7 +208,7 @@ def remove(index): # removes the dinosaurs that run into an obstacle
 def distance(pos_a, pos_b):
     dx = pos_a[0] - pos_b[0]
     dy = pos_a[1] - pos_b[1]
-    
+
     return math.sqrt(dx**2 + dy**2)
 
 
@@ -210,9 +223,9 @@ def eval_genomes(genomes, config):
     dinosaur = Dinosaur()
 
     # ge is short for genomes
-    ge = [] # this list is going to store dictionaries. Within these dictionaries, there is going to be information on each individual dinosaur such as its fitness level, its nodes, and its connections
+    ge = []  # this list is going to store dictionaries. Within these dictionaries, there is going to be information on each individual dinosaur such as its fitness level, its nodes, and its connections
 
-    nets = [] # going to store the neural net object of each individual dinosaur
+    nets = []  # going to store the neural net object of each individual dinosaur
 
     # to fill the dinosaurs, ge, and nets lists we use the following for loop
     for genome_id, genome in genomes:
@@ -237,8 +250,6 @@ def eval_genomes(genomes, config):
         text = FONT.render("Score: " + str(points), True, (0, 0, 0))
         SCREEN.blit(text, (950, 50))
 
-
-
     def background():
         global x_pos_bg, y_pos_bg
 
@@ -248,8 +259,6 @@ def eval_genomes(genomes, config):
         if x_pos_bg <= -image_width:
             x_pos_bg = 0
         x_pos_bg -= game_speed
-
-
 
     run = True
     while run:
@@ -261,7 +270,6 @@ def eval_genomes(genomes, config):
 
         SCREEN.fill((255, 255, 255))
 
-        
         dinosaur.update()
         dinosaur.draw(SCREEN)
 
@@ -271,19 +279,19 @@ def eval_genomes(genomes, config):
         if len(obstacles) == 0:
             rand_int = random.randint(0, 2)
             if rand_int == 0:
-                obstacles.append(SmallCactus(SMALL_CACTUS, random.randint(0, 2)))
+                obstacles.append(SmallCactus(
+                    SMALL_CACTUS, random.randint(0, 2)))
 
             elif rand_int == 1:
-                obstacles.append(LargeCactus(LARGE_CACTUS, random.randint(0, 2)))
+                obstacles.append(LargeCactus(
+                    LARGE_CACTUS, random.randint(0, 2)))
 
             elif rand_int == 2:
                 obstacles.append(Bird(BIRD))
 
-
         for obstacle in obstacles:
             obstacle.draw(SCREEN)
             obstacle.update()
-
 
             if dinosaur.rect.colliderect(obstacle.rect):
                 # decreases the fitness by 1 for the dinosaur that hits an obstacle
@@ -293,19 +301,18 @@ def eval_genomes(genomes, config):
             else:
                 ge[0].fitness += 1
 
-
         # the following line of code was the original method of manual input
         #user_input = pygame.key.get_pressed()
 
         # we need to pass the inputs of each individual dinosaur which are its y position, and its distance to the next obstacle into its neural net
         output = nets[0].activate((
             dinosaur.rect.y,
-            distance((dinosaur.rect.x, dinosaur.rect.y), obstacle.rect.midtop) 
+            distance((dinosaur.rect.x, dinosaur.rect.y), obstacle.rect.midtop)
         ))
 
         # replaced the old manual if statement with the new one
         # if the output is higher is 0.5 and the dinosaur is not currrently jumping, we initial the jump by executing the lines below the if statement
-        if output[0] > 0.5 and dinosaur.rect.y == dinosaur.Y_POS :
+        if output[0] > 0.5 and dinosaur.rect.y == dinosaur.Y_POS:
             dinosaur.dino_jump = True
             dinosaur.dino_duck = False
             dinosaur.dino_run = False
@@ -314,25 +321,24 @@ def eval_genomes(genomes, config):
             dinosaur.dino_jump = False
             dinosaur.dino_run = False
 
-
         score()
         background()
         cloud.draw(SCREEN)
         cloud.update()
 
         clock.tick(30)
-        pygame.display.update() # updates the display
+        pygame.display.update()  # updates the display
 
 
-
-#CODE TO USE FOR USING A SAVED GENOME
+# CODE TO USE FOR USING A SAVED GENOME
 
 def replay_genome(config_path, genome_path="DinoWinner"):
     # Load requried NEAT config
-    config = neat.config.Config(neat.DefaultGenome, neat.DefaultReproduction, neat.DefaultSpeciesSet, neat.DefaultStagnation, config_path)
+    config = neat.config.Config(neat.DefaultGenome, neat.DefaultReproduction,
+                                neat.DefaultSpeciesSet, neat.DefaultStagnation, config_path)
 
     # Unpickle saved winner
-    with open(genome_path, "rb") as f: # the 'b' in rb stands for binary cuz the file is binary
+    with open(genome_path, "rb") as f:  # the 'b' in rb stands for binary cuz the file is binary
         genome = pickle.load(f)
 
     # Convert loaded genome into required data structure
@@ -342,14 +348,12 @@ def replay_genome(config_path, genome_path="DinoWinner"):
     eval_genomes(genomes, config)
 
 
-
-
 if __name__ == "__main__":
-    local_dir = os.path.dirname(__file__) # this gives us the path to our local/working/current directory
-  
+    # this gives us the path to our local/working/current directory
+    local_dir = os.path.dirname(__file__)
+
     config_path = os.path.join(local_dir, 'config.txt')
 
-
-    #Testing the saved model
+    # Testing the saved model
     genome_path = os.path.join(local_dir, 'DinoWinner')
     replay_genome(config_path, genome_path="DinoWinner")

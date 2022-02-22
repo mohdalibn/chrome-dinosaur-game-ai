@@ -12,7 +12,7 @@ pygame.init()
 
 # Global Constanst
 SCREEN_HEIGHT = 600
-SCREEN_WIDTH = 1100
+SCREEN_WIDTH = 900
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # Sets the name of the window
@@ -20,33 +20,33 @@ pygame.display.set_caption("Chrome Dinosaur Game AI")
 
 FONT = pygame.font.Font('freesansbold.ttf', 20)
 
-RUNNING = [pygame.image.load(os.path.join("ChromeDinoGame/Assets/Dino", "DinoRun1.png")),
-           pygame.image.load(os.path.join("ChromeDinoGame/Assets/Dino", "DinoRun2.png"))]
+RUNNING = [pygame.image.load(os.path.join("./Assets/Dino", "DinoRun1.png")),
+           pygame.image.load(os.path.join("./Assets/Dino", "DinoRun2.png"))]
 
 JUMPING = pygame.image.load(os.path.join(
-    "ChromeDinoGame/Assets/Dino", "DinoJump.png"))
+    "./Assets/Dino", "DinoJump.png"))
 
-DUCKING = [pygame.image.load(os.path.join("ChromeDinoGame/Assets/Dino", "DinoDuck1.png")),
-           pygame.image.load(os.path.join("ChromeDinoGame/Assets/Dino", "DinoDuck2.png"))]
+DUCKING = [pygame.image.load(os.path.join("./Assets/Dino", "DinoDuck1.png")),
+           pygame.image.load(os.path.join("./Assets/Dino", "DinoDuck2.png"))]
 
-SMALL_CACTUS = [pygame.image.load(os.path.join("ChromeDinoGame/Assets/Cactus", "SmallCactus1.png")),
+SMALL_CACTUS = [pygame.image.load(os.path.join("./Assets/Cactus", "SmallCactus1.png")),
                 pygame.image.load(os.path.join(
-                    "ChromeDinoGame/Assets/Cactus", "SmallCactus2.png")),
-                pygame.image.load(os.path.join("ChromeDinoGame/Assets/Cactus", "SmallCactus3.png"))]
+                    "./Assets/Cactus", "SmallCactus2.png")),
+                pygame.image.load(os.path.join("./Assets/Cactus", "SmallCactus3.png"))]
 
-LARGE_CACTUS = [pygame.image.load(os.path.join("ChromeDinoGame/Assets/Cactus", "LargeCactus1.png")),
+LARGE_CACTUS = [pygame.image.load(os.path.join("./Assets/Cactus", "LargeCactus1.png")),
                 pygame.image.load(os.path.join(
-                    "ChromeDinoGame/Assets/Cactus", "LargeCactus2.png")),
-                pygame.image.load(os.path.join("ChromeDinoGame/Assets/Cactus", "LargeCactus3.png"))]
+                    "./Assets/Cactus", "LargeCactus2.png")),
+                pygame.image.load(os.path.join("./Assets/Cactus", "LargeCactus3.png"))]
 
-BIRD = [pygame.image.load(os.path.join("ChromeDinoGame/Assets/Bird", "Bird1.png")),
-        pygame.image.load(os.path.join("ChromeDinoGame/Assets/Bird", "Bird2.png"))]
+BIRD = [pygame.image.load(os.path.join("./Assets/Bird", "Bird1.png")),
+        pygame.image.load(os.path.join("./Assets/Bird", "Bird2.png"))]
 
 CLOUD = pygame.image.load(os.path.join(
-    "ChromeDinoGame/Assets/Other", "Cloud.png"))
+    "./Assets/Other", "Cloud.png"))
 
 BG = pygame.image.load(os.path.join(
-    "ChromeDinoGame/Assets/Other", "Track.png"))
+    "./Assets/Other", "Track.png"))
 
 
 class Dinosaur:
