@@ -16,7 +16,7 @@ SCREEN_WIDTH = 1100
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # Sets the name of the window
-pygame.window.set_caption("Chrome Dinosaur Game AI")
+pygame.display.set_caption("Chrome Dinosaur Game AI")
 
 FONT = pygame.font.Font('freesansbold.ttf', 20)
 
