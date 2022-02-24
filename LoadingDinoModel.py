@@ -301,7 +301,7 @@ def eval_genomes(genomes, config):
             if dinosaur.rect.colliderect(obstacle.rect):
                 # decreases the fitness by 1 for the dinosaur that hits an obstacle
                 ge[0].fitness -= 1
-                remove(i)
+                # remove(i)
                 break
             else:
                 ge[0].fitness += 1
