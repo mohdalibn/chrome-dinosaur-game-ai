@@ -20,8 +20,9 @@ DinoBG = pygame.image.load(os.path.join("./Assets/Mainmenu", "DinoBG.png"))
 
 class MenuButton():
     # Init method defined
-    def __init__(self, image, pos):
+    def __init__(self, image, hoverimage, pos):
         self.image = image
+        self.hoverimage = hoverimage
         self.x_pos = pos[0]
         self.y_pos = pos[1]
         self.rect = self.image.get_rect(center=(self.x_pos, self.y_pos))
@@ -37,6 +38,13 @@ class MenuButton():
             return True
         return False
 
+    # Method to change the text color of the button on hover
+    def ButtonHover(self, position, image, hoverimage):
+        if position[0] in range(self.rect.left, self.rect.right) and position[1] in range(self.rect.top, self.rect.bottom):
+            self.image = hoverimage
+        else:
+            self.image = image
+
 
 if __name__ == "__main__":
 
@@ -46,13 +54,18 @@ if __name__ == "__main__":
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
         TRAIN_BUTTON = MenuButton(image=pygame.image.load(
-            "./Assets/mainmenu/TrainButton.png"), pos=(310, 240))
+            "./Assets/mainmenu/TrainButton.png"), hoverimage=pygame.image.load(
+            "./Assets/mainmenu/TrainButtonHover.png"), pos=(310, 240))
         TEST_BUTTON = MenuButton(image=pygame.image.load(
-            "./Assets/mainmenu/TestButton.png"), pos=(310, 373))
+            "./Assets/mainmenu/TestButton.png"), hoverimage=pygame.image.load(
+            "./Assets/mainmenu/TestButtonHover.png"), pos=(310, 373))
         QUIT_BUTTON = MenuButton(image=pygame.image.load(
-            "./Assets/mainmenu/QuitButton.png"), pos=(310, 506))
+            "./Assets/mainmenu/QuitButton.png"), hoverimage=pygame.image.load(
+            "./Assets/mainmenu/QuitButtonHover.png"), pos=(310, 506))
 
         for button in [TRAIN_BUTTON, TEST_BUTTON, QUIT_BUTTON]:
+            # Changes the color of the buttons on hover
+            button.ButtonHover(MENU_MOUSE_POS, button.image, button.hoverimage)
             button.update(SCREEN)
 
         for event in pygame.event.get():
