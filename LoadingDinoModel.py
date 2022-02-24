@@ -6,6 +6,7 @@ import sys
 import neat
 import math
 import numpy as np
+import mainmenu
 import pickle  # use this module to save the best bird into a file and then you can load in the file and use the neural network associated with it
 from button import Button
 
@@ -13,7 +14,7 @@ from button import Button
 pygame.init()
 
 # Global Constanst
-SCREEN_HEIGHT = 620  # Screen Height of the game window
+SCREEN_HEIGHT = 650  # Screen Height of the game window
 SCREEN_WIDTH = 1000  # Screen Width of the game window
 # pygame.NOFRAME removes the task bar from the game window
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.NOFRAME)
@@ -52,6 +53,9 @@ BG = pygame.image.load(os.path.join(
     "./Assets/Other", "Track.png"))
 
 # pygame.draw.rect(SCREEN, (255, 0, 0), [(100, 400), (900, 200)])
+
+TestBG = pygame.image.load(os.path.join(
+    "./Assets", "TestingBackground.png"))
 
 
 class Dinosaur:
@@ -252,8 +256,9 @@ def eval_genomes(genomes, config):
         points += 1
         if points % 100 == 0:
             game_speed += 1
-        text = FONT.render("Score: " + str(points), True, (0, 0, 0))
-        SCREEN.blit(text, (800, 50))
+        # text = FONT.render("Score: " + str(points), True, (0, 0, 0))
+        text = FONT.render(str(points), True, (255, 255, 255))
+        SCREEN.blit(text, (860, 46))
 
     def background():
         global x_pos_bg, y_pos_bg
@@ -274,6 +279,22 @@ def eval_genomes(genomes, config):
                 sys.exit()
 
         SCREEN.fill((255, 255, 255))
+
+        MENU_MOUSE_POS = pygame.mouse.get_pos()
+
+        SCREEN.blit(TestBG, (0, 0))
+
+        BACK_BUTTON = mainmenu.MenuButton(image=pygame.image.load(
+            "./Assets/GameBackButton.png"), hoverimage=pygame.image.load(
+            "./Assets/GameBackButtonHover.png"), pos=(150, 606))
+        QUIT_BUTTON = mainmenu.MenuButton(image=pygame.image.load(
+            "./Assets/GameQuitButton.png"), hoverimage=pygame.image.load(
+            "./Assets/GameQuitButtonHover.png"), pos=(854, 606))
+
+        for button in [BACK_BUTTON, QUIT_BUTTON]:
+            # Changes the color of the buttons on hover
+            button.ButtonHover(MENU_MOUSE_POS, button.image, button.hoverimage)
+            button.update(SCREEN)
 
         dinosaur.update()
         dinosaur.draw(SCREEN)
@@ -340,6 +361,13 @@ def eval_genomes(genomes, config):
             if pygame.key.get_pressed()[pygame.K_ESCAPE]:
                 pygame.quit()
                 sys.exit()
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if BACK_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    mainmenu.MainMenu()
+                if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    pygame.quit()
+                    sys.exit()
 
         pygame.display.update()  # updates the display
 
