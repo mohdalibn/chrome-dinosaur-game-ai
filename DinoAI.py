@@ -376,6 +376,13 @@ def eval_genomes(genomes, config):
                 pygame.quit()
                 sys.exit()
 
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if BACK_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    mainmenu.MainMenu()
+                if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    pygame.quit()
+                    sys.exit()
+
         pygame.display.update()  # updates the display
 
 
