@@ -386,18 +386,18 @@ if __name__ == "__main__":
 
         EXIT_BUTTON = Button(image=pygame.image.load(
             os.path.join("./Assets/Titlebar", "times.png")), pos=(
-            640, 10), text_input="TEST", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
+            980, 20), text_input="", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
 
         PLAY_BUTTON = Button(image=pygame.image.load("./Assets/mainmenu/Play Rect.png"), pos=(500, 250),
-                             text_input="PLAY", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
+                             text_input="Train Model", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
         OPTIONS_BUTTON = Button(image=pygame.image.load("./Assets/mainmenu/Options Rect.png"), pos=(500, 400),
-                                text_input="OPTIONS", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
+                                text_input="Test Model", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
         QUIT_BUTTON = Button(image=pygame.image.load("./Assets/mainmenu/Quit Rect.png"), pos=(500, 550),
                              text_input="QUIT", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
 
         SCREEN.blit(MENU_TEXT, MENU_RECT)
 
-        for button in [PLAY_BUTTON, OPTIONS_BUTTON, QUIT_BUTTON]:
+        for button in [EXIT_BUTTON, PLAY_BUTTON, OPTIONS_BUTTON, QUIT_BUTTON]:
             button.changeColor(MENU_MOUSE_POS)
             button.update(SCREEN)
 
@@ -406,6 +406,9 @@ if __name__ == "__main__":
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
+                if EXIT_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    pygame.quit()
+                    sys.exit()
                 if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
                     replay_genome(config_path, genome_path="DinoWinner")
                 # if OPTIONS_BUTTON.checkForInput(MENU_MOUSE_POS):
