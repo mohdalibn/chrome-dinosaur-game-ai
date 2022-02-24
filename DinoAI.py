@@ -11,7 +11,7 @@ import pickle  # use this module to save the best bird into a file and then you 
 pygame.init()
 
 # Global Constanst
-SCREEN_HEIGHT = 620
+SCREEN_HEIGHT = 650
 SCREEN_WIDTH = 1000
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.NOFRAME)
 
@@ -47,6 +47,9 @@ CLOUD = pygame.image.load(os.path.join(
 
 BG = pygame.image.load(os.path.join(
     "./Assets/Other", "Track.png"))
+
+TrainBG = pygame.image.load(os.path.join(
+    "./Assets", "TrainingBackground.png"))
 
 
 class Dinosaur:
@@ -283,6 +286,8 @@ def eval_genomes(genomes, config):
                 sys.exit()
 
         SCREEN.fill((255, 255, 255))
+
+        SCREEN.blit(TrainBG, (0, 0))
 
         for dinosaur in dinosaurs:
             dinosaur.update()
