@@ -46,11 +46,11 @@ if __name__ == "__main__":
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
         TRAIN_BUTTON = MenuButton(image=pygame.image.load(
-            "./Assets/mainmenu/TrainButton.png"), pos=(165, 166))
+            "./Assets/mainmenu/TrainButton.png"), pos=(310, 240))
         TEST_BUTTON = MenuButton(image=pygame.image.load(
-            "./Assets/mainmenu/TestButton.png"), pos=(165, 299))
+            "./Assets/mainmenu/TestButton.png"), pos=(310, 373))
         QUIT_BUTTON = MenuButton(image=pygame.image.load(
-            "./Assets/mainmenu/QuitButton.png"), pos=(165, 432))
+            "./Assets/mainmenu/QuitButton.png"), pos=(310, 506))
 
         for button in [TRAIN_BUTTON, TEST_BUTTON, QUIT_BUTTON]:
             button.update(SCREEN)
