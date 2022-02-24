@@ -253,7 +253,7 @@ def eval_genomes(genomes, config):
         if points % 100 == 0:
             game_speed += 1
         text = FONT.render("Score: " + str(points), True, (0, 0, 0))
-        SCREEN.blit(text, (950, 50))
+        SCREEN.blit(text, (800, 50))
 
     def background():
         global x_pos_bg, y_pos_bg
