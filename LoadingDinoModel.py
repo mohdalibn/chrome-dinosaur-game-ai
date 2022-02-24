@@ -260,6 +260,19 @@ def eval_genomes(genomes, config):
         text = FONT.render(str(points), True, (255, 255, 255))
         SCREEN.blit(text, (860, 46))
 
+    def statistics():
+        global dinosaurs, game_speed, ge
+        text_1 = FONT.render(
+            f'Dinosaurs Alive: 1', True, "#AD06E8")
+        text_2 = FONT.render(
+            f'Result: Best Offspring', True, "#AD06E8")
+        text_3 = FONT.render(
+            f'Game Speed:  {str(game_speed)}', True, "#AD06E8")
+
+        SCREEN.blit(text_1, (130, 500))
+        SCREEN.blit(text_2, (390, 500))
+        SCREEN.blit(text_3, (700, 500))
+
     def background():
         global x_pos_bg, y_pos_bg
 
@@ -348,6 +361,7 @@ def eval_genomes(genomes, config):
             dinosaur.dino_run = False
 
         score()
+        statistics()
         background()
         cloud.draw(SCREEN)
         cloud.update()
