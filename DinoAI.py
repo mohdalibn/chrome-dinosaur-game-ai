@@ -252,17 +252,18 @@ def eval_genomes(genomes, config):
         points += 1
         if points % 100 == 0:
             game_speed += 1
-        text = FONT.render("Score: " + str(points), True, (0, 0, 0))
-        SCREEN.blit(text, (950, 50))
+        # text = FONT.render("Score: " + str(points), True, (0, 0, 0))
+        text = FONT.render(str(points), True, (255, 255, 255))
+        SCREEN.blit(text, (860, 46))
 
     def statistics():
         global dinosaurs, game_speed, ge
         text_1 = FONT.render(
-            f'Dinosaurs Alive:  {str(len(dinosaurs))}', True, (0, 0, 0))
+            f'Dinosaurs Alive:  {str(len(dinosaurs))}', True, (255, 255, 255))
         text_2 = FONT.render(
-            f'Generation:  {population.generation+1}', True, (0, 0, 0))
+            f'Generation:  {population.generation+1}', True, (255, 255, 255))
         text_3 = FONT.render(
-            f'Game Speed:  {str(game_speed)}', True, (0, 0, 0))
+            f'Game Speed:  {str(game_speed)}', True, (255, 255, 255))
 
         SCREEN.blit(text_1, (50, 450))
         SCREEN.blit(text_2, (50, 480))
