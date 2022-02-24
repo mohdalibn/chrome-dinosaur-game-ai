@@ -3,6 +3,8 @@
 import pygame
 import os
 import sys
+import DinoAI as TrainAI
+import LoadingDinoModel as TestAI
 
 pygame.init()
 
@@ -46,8 +48,7 @@ class MenuButton():
             self.image = image
 
 
-if __name__ == "__main__":
-
+def MainMenu():
     while True:
         SCREEN.blit(DinoBG, (0, 0))
 
@@ -74,8 +75,7 @@ if __name__ == "__main__":
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if TRAIN_BUTTON.checkForInput(MENU_MOUSE_POS):
-                    pygame.quit()
-                    sys.exit()
+                    TrainAI.trainrun()
                 if TEST_BUTTON.checkForInput(MENU_MOUSE_POS):
                     pygame.quit()
                     sys.exit()
@@ -84,3 +84,7 @@ if __name__ == "__main__":
                     sys.exit()
 
         pygame.display.update()
+
+
+if __name__ == "__main__":
+    MainMenu()

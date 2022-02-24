@@ -11,8 +11,8 @@ import pickle  # use this module to save the best bird into a file and then you 
 pygame.init()
 
 # Global Constanst
-SCREEN_HEIGHT = 600
-SCREEN_WIDTH = 900
+SCREEN_HEIGHT = 620
+SCREEN_WIDTH = 1000
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # Sets the name of the window
@@ -375,9 +375,13 @@ def run(config_path):
         # f.close()
 
 
-if __name__ == '__main__':
+def trainrun():
     local_dir = os.path.dirname(__file__)  # sets the local directory
 
     config_path = os.path.join(local_dir, 'config.txt')  # sets the config path
 
     run(config_path)  # calls the function run defined above
+
+
+if __name__ == '__main__':
+    trainrun()
