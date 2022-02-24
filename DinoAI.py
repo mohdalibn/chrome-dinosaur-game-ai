@@ -345,6 +345,16 @@ def eval_genomes(genomes, config):
         cloud.update()
 
         clock.tick(30)
+
+        # Adds functionality to quit with the ESC key
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if pygame.key.get_pressed()[pygame.K_ESCAPE]:
+                pygame.quit()
+                sys.exit()
+
         pygame.display.update()  # updates the display
 
 

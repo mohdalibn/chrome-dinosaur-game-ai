@@ -77,8 +77,7 @@ def MainMenu():
                 if TRAIN_BUTTON.checkForInput(MENU_MOUSE_POS):
                     TrainAI.trainrun()
                 if TEST_BUTTON.checkForInput(MENU_MOUSE_POS):
-                    pygame.quit()
-                    sys.exit()
+                    TestAI.testrun()
                 if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
                     pygame.quit()
                     sys.exit()
