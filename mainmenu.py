@@ -56,13 +56,13 @@ def MainMenu():
 
         TRAIN_BUTTON = MenuButton(image=pygame.image.load(
             "./Assets/mainmenu/TrainButton.png"), hoverimage=pygame.image.load(
-            "./Assets/mainmenu/TrainButtonHover.png"), pos=(310, 240))
+            "./Assets/mainmenu/TrainButtonHover.png"), pos=(310, 260))
         TEST_BUTTON = MenuButton(image=pygame.image.load(
             "./Assets/mainmenu/TestButton.png"), hoverimage=pygame.image.load(
-            "./Assets/mainmenu/TestButtonHover.png"), pos=(310, 373))
+            "./Assets/mainmenu/TestButtonHover.png"), pos=(310, 393))
         QUIT_BUTTON = MenuButton(image=pygame.image.load(
             "./Assets/mainmenu/QuitButton.png"), hoverimage=pygame.image.load(
-            "./Assets/mainmenu/QuitButtonHover.png"), pos=(310, 506))
+            "./Assets/mainmenu/QuitButtonHover.png"), pos=(310, 526))
 
         for button in [TRAIN_BUTTON, TEST_BUTTON, QUIT_BUTTON]:
             # Changes the color of the buttons on hover
