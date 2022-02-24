@@ -5,6 +5,7 @@ import sys
 import neat
 import math
 import numpy as np
+import mainmenu
 import pickle  # use this module to save the best bird into a file and then you can load in the file and use the neural network associated with it
 
 # Initializing a PyGame Instanct
@@ -285,9 +286,23 @@ def eval_genomes(genomes, config):
                 pygame.quit()
                 sys.exit()
 
+        MENU_MOUSE_POS = pygame.mouse.get_pos()
+
         SCREEN.fill((255, 255, 255))
 
         SCREEN.blit(TrainBG, (0, 0))
+
+        BACK_BUTTON = mainmenu.MenuButton(image=pygame.image.load(
+            "./Assets/GameBackButton.png"), hoverimage=pygame.image.load(
+            "./Assets/GameBackButtonHover.png"), pos=(150, 606))
+        QUIT_BUTTON = mainmenu.MenuButton(image=pygame.image.load(
+            "./Assets/GameQuitButton.png"), hoverimage=pygame.image.load(
+            "./Assets/GameQuitButtonHover.png"), pos=(854, 606))
+
+        for button in [BACK_BUTTON, QUIT_BUTTON]:
+            # Changes the color of the buttons on hover
+            button.ButtonHover(MENU_MOUSE_POS, button.image, button.hoverimage)
+            button.update(SCREEN)
 
         for dinosaur in dinosaurs:
             dinosaur.update()
