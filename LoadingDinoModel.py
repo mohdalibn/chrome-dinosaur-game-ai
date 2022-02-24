@@ -1,3 +1,4 @@
+from cmath import rect
 import pygame
 import os
 import random
@@ -6,14 +7,16 @@ import neat
 import math
 import numpy as np
 import pickle  # use this module to save the best bird into a file and then you can load in the file and use the neural network associated with it
+from button import Button
 
 
 pygame.init()
 
 # Global Constanst
-SCREEN_HEIGHT = 600
-SCREEN_WIDTH = 1100
-SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+SCREEN_HEIGHT = 600  # Screen Height of the game window
+SCREEN_WIDTH = 1000  # Screen Width of the game window
+# pygame.NOFRAME removes the task bar from the game window
+SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.NOFRAME)
 
 FONT = pygame.font.Font('freesansbold.ttf', 20)
 
@@ -47,6 +50,8 @@ CLOUD = pygame.image.load(os.path.join(
 
 BG = pygame.image.load(os.path.join(
     "./Assets/Other", "Track.png"))
+
+# pygame.draw.rect(SCREEN, (255, 0, 0), [(100, 400), (900, 200)])
 
 
 class Dinosaur:
@@ -102,7 +107,7 @@ class Dinosaur:
 
     def duck(self):
         self.image = DUCKING[self.step_index // 5]
-        #self.rect = self.image.get_rect()
+        # self.rect = self.image.get_rect()
         self.rect.x = self.X_POS
         self.rect.y = self.Y_POS_DUCK
         self.step_index += 1
@@ -173,14 +178,14 @@ class Obstacle:
 
 class SmallCactus(Obstacle):
     def __init__(self, image, number_of_cacti):
-        #self.number_of_cacti = random.randint(0, 2)
+        # self.number_of_cacti = random.randint(0, 2)
         super().__init__(image, number_of_cacti)
         self.rect.y = 325
 
 
 class LargeCactus(Obstacle):
     def __init__(self, image, number_of_cacti):
-        #self.number_of_cacti = random.randint(0, 2)
+        # self.number_of_cacti = random.randint(0, 2)
         super().__init__(image, number_of_cacti)
         self.rect.y = 300
 
@@ -302,7 +307,7 @@ def eval_genomes(genomes, config):
                 ge[0].fitness += 1
 
         # the following line of code was the original method of manual input
-        #user_input = pygame.key.get_pressed()
+        # user_input = pygame.key.get_pressed()
 
         # we need to pass the inputs of each individual dinosaur which are its y position, and its distance to the next obstacle into its neural net
         output = nets[0].activate((
@@ -327,6 +332,15 @@ def eval_genomes(genomes, config):
         cloud.update()
 
         clock.tick(30)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if pygame.key.get_pressed()[pygame.K_ESCAPE]:
+                pygame.quit()
+                sys.exit()
+
         pygame.display.update()  # updates the display
 
 
@@ -348,6 +362,10 @@ def replay_genome(config_path, genome_path="DinoWinner"):
     eval_genomes(genomes, config)
 
 
+def get_font(size):  # Returns Press-Start-2P in the desired size
+    return pygame.font.Font("./Assets/mainmenu/font.ttf", size)
+
+
 if __name__ == "__main__":
     # this gives us the path to our local/working/current directory
     local_dir = os.path.dirname(__file__)
@@ -356,4 +374,44 @@ if __name__ == "__main__":
 
     # Testing the saved model
     genome_path = os.path.join(local_dir, 'DinoWinner')
-    replay_genome(config_path, genome_path="DinoWinner")
+    # replay_genome(config_path, genome_path="DinoWinner")
+
+    while True:
+        SCREEN.blit(BG, (0, 0))
+
+        MENU_MOUSE_POS = pygame.mouse.get_pos()
+
+        MENU_TEXT = get_font(90).render("MAIN MENU", True, "#b68f40")
+        MENU_RECT = MENU_TEXT.get_rect(center=(500, 100))
+
+        EXIT_BUTTON = Button(image=pygame.image.load(
+            os.path.join("./Assets/Titlebar", "times.png")), pos=(
+            640, 10), text_input="TEST", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
+
+        PLAY_BUTTON = Button(image=pygame.image.load("./Assets/mainmenu/Play Rect.png"), pos=(500, 250),
+                             text_input="PLAY", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
+        OPTIONS_BUTTON = Button(image=pygame.image.load("./Assets/mainmenu/Options Rect.png"), pos=(500, 400),
+                                text_input="OPTIONS", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
+        QUIT_BUTTON = Button(image=pygame.image.load("./Assets/mainmenu/Quit Rect.png"), pos=(500, 550),
+                             text_input="QUIT", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
+
+        SCREEN.blit(MENU_TEXT, MENU_RECT)
+
+        for button in [PLAY_BUTTON, OPTIONS_BUTTON, QUIT_BUTTON]:
+            button.changeColor(MENU_MOUSE_POS)
+            button.update(SCREEN)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    replay_genome(config_path, genome_path="DinoWinner")
+                # if OPTIONS_BUTTON.checkForInput(MENU_MOUSE_POS):
+                #     options()
+                if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    pygame.quit()
+                    sys.exit()
+
+        pygame.display.update()
