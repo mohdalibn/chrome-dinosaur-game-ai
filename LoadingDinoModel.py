@@ -13,7 +13,7 @@ from button import Button
 pygame.init()
 
 # Global Constanst
-SCREEN_HEIGHT = 600  # Screen Height of the game window
+SCREEN_HEIGHT = 620  # Screen Height of the game window
 SCREEN_WIDTH = 1000  # Screen Width of the game window
 # pygame.NOFRAME removes the task bar from the game window
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.NOFRAME)
@@ -388,12 +388,12 @@ if __name__ == "__main__":
             os.path.join("./Assets/Titlebar", "times.png")), pos=(
             980, 20), text_input="", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
 
-        PLAY_BUTTON = Button(image=pygame.image.load("./Assets/mainmenu/Play Rect.png"), pos=(500, 250),
-                             text_input="Train Model", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
+        PLAY_BUTTON = Button(image=pygame.image.load("./Assets/mainmenu/Options Rect.png"), pos=(500, 250),
+                             text_input="Train Model", font=get_font(50), base_color="#d7fcd4", hovering_color="Red")
         OPTIONS_BUTTON = Button(image=pygame.image.load("./Assets/mainmenu/Options Rect.png"), pos=(500, 400),
-                                text_input="Test Model", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
+                                text_input="Test Model", font=get_font(50), base_color="#d7fcd4", hovering_color="White")
         QUIT_BUTTON = Button(image=pygame.image.load("./Assets/mainmenu/Quit Rect.png"), pos=(500, 550),
-                             text_input="QUIT", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
+                             text_input="QUIT", font=get_font(50), base_color="#d7fcd4", hovering_color="White")
 
         SCREEN.blit(MENU_TEXT, MENU_RECT)
 
