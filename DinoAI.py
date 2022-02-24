@@ -259,15 +259,15 @@ def eval_genomes(genomes, config):
     def statistics():
         global dinosaurs, game_speed, ge
         text_1 = FONT.render(
-            f'Dinosaurs Alive:  {str(len(dinosaurs))}', True, (255, 255, 255))
+            f'Dinosaurs Alive:  {str(len(dinosaurs))}', True, "#AD06E8")
         text_2 = FONT.render(
-            f'Generation:  {population.generation+1}', True, (255, 255, 255))
+            f'Generation:  {population.generation+1}', True, "#AD06E8")
         text_3 = FONT.render(
-            f'Game Speed:  {str(game_speed)}', True, (255, 255, 255))
+            f'Game Speed:  {str(game_speed)}', True, "#AD06E8")
 
-        SCREEN.blit(text_1, (50, 450))
-        SCREEN.blit(text_2, (50, 480))
-        SCREEN.blit(text_3, (50, 510))
+        SCREEN.blit(text_1, (180, 500))
+        SCREEN.blit(text_2, (440, 500))
+        SCREEN.blit(text_3, (650, 500))
 
     def background():
         global x_pos_bg, y_pos_bg
