@@ -64,6 +64,7 @@ def MainMenu():
             "./Assets/mainmenu/QuitButton.png"), hoverimage=pygame.image.load(
             "./Assets/mainmenu/QuitButtonHover.png"), pos=(310, 526))
 
+        # List to contain the buttons
         ButtonList = [TRAIN_BUTTON, TEST_BUTTON, QUIT_BUTTON]
 
         for button in ButtonList:

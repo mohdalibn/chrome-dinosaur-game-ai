@@ -300,6 +300,7 @@ def eval_genomes(genomes, config):
             "./Assets/GameQuitButton.png"), hoverimage=pygame.image.load(
             "./Assets/GameQuitButtonHover.png"), pos=(854, 606))
 
+        # List to contain the buttons
         ButtonList = [BACK_BUTTON, QUIT_BUTTON]
 
         for button in ButtonList:
