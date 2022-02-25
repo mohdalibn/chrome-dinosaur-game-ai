@@ -300,7 +300,9 @@ def eval_genomes(genomes, config):
             "./Assets/GameQuitButton.png"), hoverimage=pygame.image.load(
             "./Assets/GameQuitButtonHover.png"), pos=(854, 606))
 
-        for button in [BACK_BUTTON, QUIT_BUTTON]:
+        ButtonList = [BACK_BUTTON, QUIT_BUTTON]
+
+        for button in ButtonList:
             # Changes the color of the buttons on hover
             button.ButtonHover(MENU_MOUSE_POS, button.image, button.hoverimage)
             button.update(SCREEN)
