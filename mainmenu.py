@@ -64,7 +64,9 @@ def MainMenu():
             "./Assets/mainmenu/QuitButton.png"), hoverimage=pygame.image.load(
             "./Assets/mainmenu/QuitButtonHover.png"), pos=(310, 526))
 
-        for button in [TRAIN_BUTTON, TEST_BUTTON, QUIT_BUTTON]:
+        ButtonList = [TRAIN_BUTTON, TEST_BUTTON, QUIT_BUTTON]
+
+        for button in ButtonList:
             # Changes the color of the buttons on hover
             button.ButtonHover(MENU_MOUSE_POS, button.image, button.hoverimage)
             button.update(SCREEN)
