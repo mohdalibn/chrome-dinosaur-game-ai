@@ -8,7 +8,6 @@ import math
 import numpy as np
 import mainmenu
 import pickle  # use this module to save the best bird into a file and then you can load in the file and use the neural network associated with it
-from button import Button
 
 
 pygame.init()
