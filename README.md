@@ -11,6 +11,8 @@
 <!-- Project Description -->
 # ![project-description (4)](https://user-images.githubusercontent.com/95453430/155801412-4e431eab-a837-4ad7-a5f8-398832b0bb1a.svg)
 
+This is a **Python** project featuring a replica of the google chrome dinosaur game with images sprites found online using a python game library called **PyGame**. The **Neural Network Model** was developed using a special **genetic algorithm** module in python called the **Neural Evolution of Augmented Topologies (NEAT)**  .The design of the mainmenu background, the navigation buttons, and the statistics dashboards were all created using a design prototyping tool called **Figma**. In this application, the user is able to **Train** & **Test** thier model which is stored as a **pickle file** under the name **DinoWinner**.
+
 <!-- Tech Stack -->
 # ![technologies-used (3)](https://user-images.githubusercontent.com/95453430/155801266-918b6b95-8e3d-4c30-b7b5-5dbd1aee402f.svg)
 
