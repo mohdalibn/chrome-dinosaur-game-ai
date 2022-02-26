@@ -14,5 +14,10 @@
 <!-- Tech Stack -->
 # ![technologies-used (3)](https://user-images.githubusercontent.com/95453430/155801266-918b6b95-8e3d-4c30-b7b5-5dbd1aee402f.svg)
 
+![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Python](https://img.shields.io/badge/pygame-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Python](https://img.shields.io/badge/NEAT%20python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+
 <!-- How To Use-->
 # ![how-to-run-project (1)](https://user-images.githubusercontent.com/95453430/155801282-8ffca029-c86b-4496-877b-4e57dcec749d.svg)
