@@ -23,3 +23,9 @@ This is a **Python** project featuring a replica of the google chrome dinosaur g
 
 <!-- How To Use-->
 # ![how-to-run-project (1)](https://user-images.githubusercontent.com/95453430/155801282-8ffca029-c86b-4496-877b-4e57dcec749d.svg)
+
+- Click on the green **Code** button on the top of this page and download the repository zip using the method of your choice.
+- Extract the files into a suitable folder.
+- Open the mainmenu.py file on the IDE of your choice. (VSCode Recommended)
+- The repository already comes with a trained **DinoWinner** model. To train your own model, delete the **DinoWinner file** first and then run the mainmenu.py file and click on the **Train** button on the main menu. Once the **training** process is complete, a new **DinoWinner** file will be created.
+- Click on the **Test** button on the main menu to test your model.
